@@ -1,3 +1,4 @@
+
 /**:
   turtlebot3_node:
     ros__parameters:
@@ -26,6 +27,8 @@
         illumination: 0
         ir: 0
         sonar: 0
+        flame: 1 # add: flame sensor
+        gas: 1 # add: gas sensor
 /**:
   diff_drive_controller:
     ros__parameters:

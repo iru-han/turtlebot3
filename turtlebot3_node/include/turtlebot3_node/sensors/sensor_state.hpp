@@ -40,7 +40,10 @@ public:
     const uint8_t & bumper_backward = 0,
     const uint8_t & illumination = 0,
     const uint8_t & cliff = 0,
-    const uint8_t & sonar = 0);
+    const uint8_t & sonar = 0,
+    const uint8_t & flame = 0, // add: flame 파라미터
+    const uint8_t & gas = 0 // add: gas 파라미터
+    );
 
   void publish(
     const rclcpp::Time & now,
@@ -54,6 +57,8 @@ private:
   uint8_t illumination_;
   uint8_t cliff_;
   uint8_t sonar_;
+  uint8_t flame_; // add: flame 상태 변수
+  uint8_t gas_; // add: gas 상태 변수
 };
 }  // namespace sensors
 }  // namespace turtlebot3

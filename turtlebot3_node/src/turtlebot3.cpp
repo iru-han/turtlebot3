@@ -149,11 +149,18 @@ void TurtleBot3::add_sensors()
   uint8_t is_connected_ir = 0;
   uint8_t is_connected_sonar = 0;
 
+  uint8_t is_connected_flame = 0; // add: flame
+  uint8_t is_connected_gas = 0; // add: gas
+
   this->declare_parameter<uint8_t>("sensors.bumper_1");
   this->declare_parameter<uint8_t>("sensors.bumper_2");
   this->declare_parameter<uint8_t>("sensors.illumination");
   this->declare_parameter<uint8_t>("sensors.ir");
   this->declare_parameter<uint8_t>("sensors.sonar");
+
+  // add:파라미터 선언
+  this->declare_parameter<uint8_t>("sensors.flame");
+  this->declare_parameter<uint8_t>("sensors.gas"); // [추가]
 
   this->get_parameter_or<uint8_t>(
     "sensors.bumper_1",
@@ -176,6 +183,10 @@ void TurtleBot3::add_sensors()
     is_connected_sonar,
     0);
 
+  // add: 파라미터 값 가져오기
+  this->get_parameter_or<uint8_t>("sensors.flame", is_connected_flame, 0);
+  this->get_parameter_or<uint8_t>("sensors.gas", is_connected_gas, 0); // [추가]
+
   sensors_.push_back(
     new sensors::BatteryState(
       node_handle_,
@@ -196,7 +207,9 @@ void TurtleBot3::add_sensors()
       is_connected_bumper_2,
       is_connected_illumination,
       is_connected_ir,
-      is_connected_sonar));
+      is_connected_sonar,
+      is_connected_flame,
+      is_connected_gas)); // add: 마지막에 flame, gas 추가
 
   dxl_sdk_wrapper_->read_data_set();
   sensors_.push_back(
