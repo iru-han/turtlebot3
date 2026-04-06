@@ -126,7 +126,7 @@ void SensorState::publish(
       extern_control_table.dht_temp.addr,
       extern_control_table.dht_temp.length
     );
-    msg->humidity = dxl_dsk_wrapper->get_data_from_device<float>(
+    msg->humidity = dxl_sdk_wrapper->get_data_from_device<float>(
       extern_control_table.dht_humi.addr,
       extern_control_table.dht_humi.length
     );
