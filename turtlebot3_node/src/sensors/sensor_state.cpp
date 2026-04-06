@@ -31,7 +31,8 @@ SensorState::SensorState(
   const uint8_t & cliff,
   const uint8_t & sonar,
   const uint8_t & flame, // add: flame parameter
-  const uint8_t & gas // add: gas parameter
+  const uint8_t & gas, // add: gas parameter
+  const uint8_t & dht // add: dht parameter
 )
 : Sensors(nh),
   bumper_forward_(bumper_forward),
@@ -40,7 +41,8 @@ SensorState::SensorState(
   cliff_(cliff),
   sonar_(sonar),
   flame_(flame), // add: flame parameter
-  gas_(gas) // add: gas parameter
+  gas_(gas), // add: gas parameter
+  dht_(dht) // add: dht parameter
 {
   pub_ = nh->create_publisher<turtlebot3_msgs::msg::SensorState>(topic_name, this->qos_);
 
@@ -117,6 +119,20 @@ void SensorState::publish(
     );
   } else {
     msg->gas = 0.0f;
+  }
+
+  if (dht_) {
+    msg->temperature = dxl_sdk_wrapper->get_data_from_device<float>(
+      extern_control_table.dht_temp.addr,
+      extern_control_table.dht_temp.length
+    );
+    msg->humidity = dxl_dsk_wrapper->get_data_from_device<float>(
+      extern_control_table.dht_humi.addr,
+      extern_control_table.dht_humi.length
+    );
+  } else {
+    msg->temperature = 0.0f;
+    msg->humidity = 0.0f;
   }
 
   // update button state

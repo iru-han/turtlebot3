@@ -70,8 +70,13 @@ typedef struct
 
   // add: 32번: 불꽃 센서 디지털 상태
   ControlItem flame = {32, RAM, 1, READ};
+  
   // add: 33번: 가스 센서 디지털 상태 (이름을 gas로 변경)
   ControlItem gas = {33, RAM, 1, READ};
+
+  // add: 온습도 센서 추가 (51~58번 빈 공간 활용)
+  ControlItem dht_temp = {51, RAM, 4, READ}; // 51, 52, 53, 54 사용
+  ControlItem dht_humi = {55, RAM, 4, READ}; // 55, 56, 57, 58 사용
 
   ControlItem battery_voltage = {42, RAM, 4, READ};
   ControlItem battery_percentage = {46, RAM, 4, READ};
