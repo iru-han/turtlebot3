@@ -145,24 +145,15 @@ void TurtleBot3::add_sensors()
 
   uint8_t is_connected_bumper_1 = 0;
   uint8_t is_connected_bumper_2 = 0;
-  // uint8_t is_connected_illumination = 0;
+  uint8_t is_connected_illumination = 0;
   uint8_t is_connected_ir = 0;
-  // uint8_t is_connected_sonar = 0;
-
-  uint8_t is_connected_flame = 0; // add: flame
-  uint8_t is_connected_gas = 0; // add: gas
-  uint8_t is_connected_dht = 0; // add: dht
+  uint8_t is_connected_sonar = 0;
 
   this->declare_parameter<uint8_t>("sensors.bumper_1");
   this->declare_parameter<uint8_t>("sensors.bumper_2");
-  // this->declare_parameter<uint8_t>("sensors.illumination");
+  this->declare_parameter<uint8_t>("sensors.illumination");
   this->declare_parameter<uint8_t>("sensors.ir");
-  // this->declare_parameter<uint8_t>("sensors.sonar");
-
-  // add: 파라미터 선언
-  this->declare_parameter<uint8_t>("sensors.flame");
-  this->declare_parameter<uint8_t>("sensors.gas");
-  this->declare_parameter<uint8_t>("sensors.dht");
+  this->declare_parameter<uint8_t>("sensors.sonar");
 
   this->get_parameter_or<uint8_t>(
     "sensors.bumper_1",
@@ -172,23 +163,18 @@ void TurtleBot3::add_sensors()
     "sensors.bumper_2",
     is_connected_bumper_2,
     0);
-  // this->get_parameter_or<uint8_t>(
-  //   "sensors.illumination",
-  //   is_connected_illumination,
-  //   0);
+  this->get_parameter_or<uint8_t>(
+    "sensors.illumination",
+    is_connected_illumination,
+    0);
   this->get_parameter_or<uint8_t>(
     "sensors.ir",
     is_connected_ir,
     0);
-  // this->get_parameter_or<uint8_t>(
-  //   "sensors.sonar",
-  //   is_connected_sonar,
-  //   0);
-
-  // add: 파라미터 값 가져오기
-  this->get_parameter_or<uint8_t>("sensors.flame", is_connected_flame, 0);
-  this->get_parameter_or<uint8_t>("sensors.gas", is_connected_gas, 0);
-  this->get_parameter_or<uint8_t>("sensors.dht", is_connected_dht, 0);
+  this->get_parameter_or<uint8_t>(
+    "sensors.sonar",
+    is_connected_sonar,
+    0);
 
   sensors_.push_back(
     new sensors::BatteryState(
@@ -208,12 +194,9 @@ void TurtleBot3::add_sensors()
       "sensor_state",
       is_connected_bumper_1,
       is_connected_bumper_2,
-      // is_connected_illumination,
+      is_connected_illumination,
       is_connected_ir,
-      // is_connected_sonar,
-      is_connected_flame,
-      is_connected_gas,
-      is_connected_dht)); // add: 마지막에 flame, gas, dht 추가
+      is_connected_sonar));
 
   dxl_sdk_wrapper_->read_data_set();
   sensors_.push_back(

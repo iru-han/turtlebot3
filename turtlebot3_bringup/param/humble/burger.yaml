@@ -24,9 +24,9 @@
       sensors:
         bumper_1: 0
         bumper_2: 0
-        # illumination: 0
+        illumination: 0
         ir: 0
-        # sonar: 0
+        sonar: 0
         # 0이면 데이터를 읽지 않음
         flame: 1 # add: flame sensor
         gas: 1 # add: gas sensor
