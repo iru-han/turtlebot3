@@ -63,16 +63,15 @@ typedef struct
   ControlItem bumper_2 = {29, RAM, 1, READ};
 
   // illumination (조도 센서): 주소 30번, 길이 4 $\rightarrow$ (30, 31, 32, 33번지를 사용함)
-  // ControlItem illumination = {30, RAM, 4, READ};
-  ControlItem illumination = {30, RAM, 2, READ};
+  ControlItem illumination = {30, RAM, 4, READ};
   ControlItem ir = {34, RAM, 4, READ};
   ControlItem sonar = {38, RAM, 4, READ};
 
   // add: 32번: 불꽃 센서 디지털 상태
-  ControlItem flame = {32, RAM, 1, READ};
+  ControlItem flame = {144, RAM, 1, READ};
 
   // add: 33번: 가스 센서 디지털 상태 (이름을 gas로 변경)
-  ControlItem gas = {33, RAM, 1, READ};
+  ControlItem gas = {145, RAM, 1, READ};
 
   // add: 온습도 센서 추가
   ControlItem dht_temp = {112, RAM, 4, READ}; // 112, 113, 114, 115 사용
