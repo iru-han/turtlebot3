@@ -121,29 +121,29 @@ void SensorState::publish(
   //   msg->gas = 0;
   // }
 
-  // if (dht_) {
-  //   msg->temperature = dxl_sdk_wrapper->get_data_from_device<float>(
-  //     extern_control_table.dht_temp.addr,
-  //     extern_control_table.dht_temp.length
-  //   );
-  //   msg->humidity = dxl_sdk_wrapper->get_data_from_device<float>(
-  //     extern_control_table.dht_humi.addr,
-  //     extern_control_table.dht_humi.length
-  //   );
+  if (dht_) {
+    msg->temperature = dxl_sdk_wrapper->get_data_from_device<float>(
+      extern_control_table.dht_temp.addr,
+      extern_control_table.dht_temp.length
+    );
+    msg->humidity = dxl_sdk_wrapper->get_data_from_device<float>(
+      extern_control_table.dht_humi.addr,
+      extern_control_table.dht_humi.length
+    );
 
-  //   // [방법 1] 실시간으로 모든 데이터를 다 찍어보고 싶을 때
-  //   // RCLCPP_INFO(nh_->get_logger(), "DHT Data -> Temp: %f, Humi: %f", msg->temperature, msg->humidity);
+    // [방법 1] 실시간으로 모든 데이터를 다 찍어보고 싶을 때
+    // RCLCPP_INFO(nh_->get_logger(), "DHT Data -> Temp: %f, Humi: %f", msg->temperature, msg->humidity);
 
-  //   // [방법 2] 1초(1000ms)에 한 번만 깔끔하게 찍고 싶을 때 (추천)
-  //   // RCLCPP_INFO_THROTTLE(nh_->get_logger(), *nh_->get_clock(), 1000, "DHT Data -> Temp: %f, Humi: %f", msg->temperature, msg->humidity);
+    // [방법 2] 1초(1000ms)에 한 번만 깔끔하게 찍고 싶을 때 (추천)
+    // RCLCPP_INFO_THROTTLE(nh_->get_logger(), *nh_->get_clock(), 1000, "DHT Data -> Temp: %f, Humi: %f", msg->temperature, msg->humidity);
 
-  // } else {
-  //   // 만약 dht_가 0이라서 0.0이 뜨는 거라면 이 로그가 찍힐 겁니다.
-  //   // RCLCPP_WARN_THROTTLE(nh_->get_logger(), *nh_->get_clock(), 2000, "DHT sensor is DISABLED in parameter!");
+  } else {
+    // 만약 dht_가 0이라서 0.0이 뜨는 거라면 이 로그가 찍힐 겁니다.
+    // RCLCPP_WARN_THROTTLE(nh_->get_logger(), *nh_->get_clock(), 2000, "DHT sensor is DISABLED in parameter!");
     
-  //   msg->temperature = 0.0f;
-  //   msg->humidity = 0.0f;
-  // }
+    msg->temperature = 0.0f;
+    msg->humidity = 0.0f;
+  }
 
   // update button state
   uint8_t button_push_state;
