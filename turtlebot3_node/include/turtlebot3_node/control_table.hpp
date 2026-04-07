@@ -68,14 +68,14 @@ typedef struct
   ControlItem sonar = {38, RAM, 4, READ};
 
   // add: 32번: 불꽃 센서 디지털 상태
-  ControlItem flame = {144, RAM, 1, READ};
+  ControlItem flame = {508, RAM, 1, READ};
 
   // add: 33번: 가스 센서 디지털 상태 (이름을 gas로 변경)
-  ControlItem gas = {145, RAM, 1, READ};
+  ControlItem gas = {509, RAM, 1, READ};
 
   // add: 온습도 센서 추가
-  ControlItem dht_temp = {112, RAM, 4, READ}; // 112, 113, 114, 115 사용
-  ControlItem dht_humi = {116, RAM, 4, READ}; // 116, 117, 118, 119 사용
+  ControlItem dht_temp = {500, RAM, 4, READ}; // 112, 113, 114, 115 사용
+  ControlItem dht_humi = {504, RAM, 4, READ}; // 116, 117, 118, 119 사용
 
   ControlItem battery_voltage = {42, RAM, 4, READ};
   ControlItem battery_percentage = {46, RAM, 4, READ};
