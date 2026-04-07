@@ -27,9 +27,9 @@ SensorState::SensorState(
   const std::string & topic_name,
   const uint8_t & bumper_forward,
   const uint8_t & bumper_backward,
-  const uint8_t & illumination,
+  // const uint8_t & illumination,
   const uint8_t & cliff,
-  const uint8_t & sonar,
+  // const uint8_t & sonar,
   const uint8_t & flame, // add: flame parameter
   const uint8_t & gas, // add: gas parameter
   const uint8_t & dht // add: dht parameter
@@ -37,9 +37,9 @@ SensorState::SensorState(
 : Sensors(nh),
   bumper_forward_(bumper_forward),
   bumper_backward_(bumper_backward),
-  illumination_(illumination),
+  // illumination_(illumination),
   cliff_(cliff),
-  sonar_(sonar),
+  // sonar_(sonar),
   flame_(flame), // add: flame parameter
   gas_(gas), // add: gas parameter
   dht_(dht) // add: dht parameter
@@ -86,21 +86,21 @@ void SensorState::publish(
     msg->cliff = 0.0f;
   }
 
-  if (sonar_) {
-    msg->sonar = dxl_sdk_wrapper->get_data_from_device<float>(
-      extern_control_table.sonar.addr,
-      extern_control_table.sonar.length);
-  } else {
-    msg->sonar = 0.0f;
-  }
+  // if (sonar_) {
+  //   msg->sonar = dxl_sdk_wrapper->get_data_from_device<float>(
+  //     extern_control_table.sonar.addr,
+  //     extern_control_table.sonar.length);
+  // } else {
+  //   msg->sonar = 0.0f;
+  // }
 
-  if (illumination_) {
-    msg->illumination = dxl_sdk_wrapper->get_data_from_device<float>(
-      extern_control_table.illumination.addr,
-      extern_control_table.illumination.length);
-  } else {
-    msg->illumination = 0.0f;
-  }
+  // if (illumination_) {
+  //   msg->illumination = dxl_sdk_wrapper->get_data_from_device<float>(
+  //     extern_control_table.illumination.addr,
+  //     extern_control_table.illumination.length);
+  // } else {
+  //   msg->illumination = 0.0f;
+  // }
 
   // add: flame and gas
   if (flame_) { // YAML에서 1(True)을 받으면 실행

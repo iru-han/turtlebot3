@@ -38,9 +38,9 @@ public:
     const std::string & topic_name = "sensor_state",
     const uint8_t & bumper_forward = 0,
     const uint8_t & bumper_backward = 0,
-    const uint8_t & illumination = 0,
+    // const uint8_t & illumination = 0,
     const uint8_t & cliff = 0,
-    const uint8_t & sonar = 0,
+    // const uint8_t & sonar = 0,
     const uint8_t & flame = 0, // add: flame 파라미터
     const uint8_t & gas = 0, // add: gas 파라미터
     const uint8_t & dht = 0 // add: dht 파라미터 추가
@@ -55,9 +55,9 @@ private:
 
   uint8_t bumper_forward_;
   uint8_t bumper_backward_;
-  uint8_t illumination_;
+  // uint8_t illumination_;
   uint8_t cliff_;
-  uint8_t sonar_;
+  // uint8_t sonar_;
   uint8_t flame_; // add: flame 상태 변수
   uint8_t gas_; // add: gas 상태 변수
   uint8_t dht_; // add: dht 상태 변수
