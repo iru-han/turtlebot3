@@ -109,7 +109,7 @@ void SensorState::publish(
       extern_control_table.flame.length // <--- 표에 적힌 길이(1)를 가져옴
     );
   } else {
-    msg->flame = 0.0f;
+    msg->flame = 0;
   }
 
   if (gas_) { // [추가] YAML에서 gas: 1이면 실행
@@ -118,7 +118,7 @@ void SensorState::publish(
       extern_control_table.gas.length
     );
   } else {
-    msg->gas = 0.0f;
+    msg->gas = 0;
   }
 
   if (dht_) {
