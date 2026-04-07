@@ -66,11 +66,17 @@ void TurtleBot3::init_dynamixel_sdk_wrapper(const std::string & usb_port)
 
   dxl_sdk_wrapper_ = std::make_shared<DynamixelSDKWrapper>(opencr);
 
-  dxl_sdk_wrapper_->init_read_memory(
-    extern_control_table.millis.addr,
-    (extern_control_table.profile_acceleration_right.addr - extern_control_table.millis.addr) +
-    extern_control_table.profile_acceleration_right.length
-  );
+  // [수정] 읽기 범위를 409번지(가스 센서) + 길이(1)까지 늘립니다.
+  uint16_t start_addr = extern_control_table.millis.addr;
+  uint16_t last_addr = extern_control_table.gas_digital.addr;
+  uint16_t total_length = (last_addr - start_addr) + extern_control_table.gas_digital.length;
+
+  dxl_sdk_wrapper_->init_read_memory(start_addr, total_length);
+  // dxl_sdk_wrapper_->init_read_memory(
+  //   extern_control_table.millis.addr,
+  //   (extern_control_table.profile_acceleration_right.addr - extern_control_table.millis.addr) +
+  //   extern_control_table.profile_acceleration_right.length
+  // );
 }
 
 void TurtleBot3::check_device_status()

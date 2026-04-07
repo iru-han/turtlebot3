@@ -50,6 +50,21 @@ void SensorState::publish(
 
   msg->header.stamp = now;
 
+  msg->temperature = dxl_sdk_wrapper->get_data_from_device<int32_t>(
+    extern_control_table.dht_temp.addr, extern_control_table.dht_temp.length);
+
+  msg->humidity = dxl_sdk_wrapper->get_data_from_device<int32_t>(
+    extern_control_table.dht_humi.addr, extern_control_table.dht_humi.length);
+    
+  // 불꽃 및 가스 상태 (디지털 1바이트)
+  // msg 필드 이름이 .flame, .gas 인지 확인 필요 (사용자 커스텀 필드)
+  // 여기서는 예시로 필드명을 명시합니다.
+  msg->flame = dxl_sdk_wrapper->get_data_from_device<uint8_t>(
+    extern_control_table.flame_digital.addr, extern_control_table.flame_digital.length);
+  
+  msg->gas = dxl_sdk_wrapper->get_data_from_device<uint8_t>(
+    extern_control_table.gas_digital.addr, extern_control_table.gas_digital.length);
+
   if (bumper_forward_ || bumper_backward_) {
     uint8_t bumper_push_state;
     uint8_t bumper_forward_state;
