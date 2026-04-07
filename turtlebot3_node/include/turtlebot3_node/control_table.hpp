@@ -68,10 +68,10 @@ typedef struct
   ControlItem ir = {34, RAM, 4, READ};
 
   // add: 32번: 불꽃 센서 디지털 상태
-  ControlItem flame = {32, RAM, 1, READ};
+  ControlItem flame = {54, RAM, 1, READ};
 
   // add: 33번: 가스 센서 디지털 상태 (이름을 gas로 변경)
-  ControlItem gas = {33, RAM, 1, READ};
+  ControlItem gas = {55, RAM, 1, READ};
 
   // add: 온습도 센서 추가
   ControlItem dht_temp = {30, RAM, 4, READ};

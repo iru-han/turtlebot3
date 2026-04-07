@@ -104,7 +104,7 @@ void SensorState::publish(
 
   // add: flame and gas
   if (flame_) { // YAML에서 1(True)을 받으면 실행
-    msg->flame = dxl_sdk_wrapper->get_data_from_device<uint8_t>(
+    msg->flame = dxl_sdk_wrapper->get_data_from_device<bool>(
       extern_control_table.flame.addr,   // <--- 이제 'flame_' 대신 표에서 주소(32)를 가져옴
       extern_control_table.flame.length // <--- 표에 적힌 길이(1)를 가져옴
     );
@@ -113,7 +113,7 @@ void SensorState::publish(
   }
 
   if (gas_) { // [추가] YAML에서 gas: 1이면 실행
-    msg->gas = dxl_sdk_wrapper->get_data_from_device<uint8_t>(
+    msg->gas = dxl_sdk_wrapper->get_data_from_device<bool>(
       extern_control_table.gas.addr, // 제어표의 가스 디지털 주소(33)
       extern_control_table.gas.length
     );
