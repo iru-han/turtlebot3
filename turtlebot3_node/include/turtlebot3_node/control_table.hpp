@@ -106,10 +106,10 @@ typedef struct
   ControlItem profile_acceleration_left = {174, RAM, 4, READ_WRITE};
   ControlItem profile_acceleration_right = {178, RAM, 4, READ_WRITE};
 
-  ControlItem dht_temp = {400, RAM, 4, READ};       // 온도 (400)
-  ControlItem dht_humi = {404, RAM, 4, READ};       // 습도 (404)
-  ControlItem flame_digital = {408, RAM, 1, READ};  // 불꽃 (408)
-  ControlItem gas_digital = {409, RAM, 1, READ};    // 가스 (409)
+  ControlItem dht_temp = {51, RAM, 4, READ};       // 온도 (51)
+  ControlItem dht_humi = {55, RAM, 4, READ};       // 습도 (55)
+  ControlItem flame_digital = {112, RAM, 1, READ};  // 불꽃 (112)
+  ControlItem gas_digital = {113, RAM, 1, READ};    // 가스 (113)
 } ControlTable;
 
 const ControlTable extern_control_table;
