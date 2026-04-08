@@ -66,11 +66,21 @@ void TurtleBot3::init_dynamixel_sdk_wrapper(const std::string & usb_port)
 
   dxl_sdk_wrapper_ = std::make_shared<DynamixelSDKWrapper>(opencr);
 
+  uint16_t start_addr = extern_control_table.millis.addr;
+  
+  // 마지막 주소는 178번(profile_acceleration_right) + 길이 4바이트까지
+  uint16_t last_addr = extern_control_table.profile_acceleration_right.addr;
+  uint16_t last_len = extern_control_table.profile_acceleration_right.length;
+
   dxl_sdk_wrapper_->init_read_memory(
-    extern_control_table.millis.addr,
-    (extern_control_table.profile_acceleration_right.addr - extern_control_table.millis.addr) +
-    extern_control_table.profile_acceleration_right.length
+    start_addr,
+    (last_addr - start_addr) + last_len
   );
+  // dxl_sdk_wrapper_->init_read_memory(
+  //   extern_control_table.millis.addr,
+  //   (extern_control_table.profile_acceleration_right.addr - extern_control_table.millis.addr) +
+  //   extern_control_table.profile_acceleration_right.length
+  // );
 }
 
 void TurtleBot3::check_device_status()

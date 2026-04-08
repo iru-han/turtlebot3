@@ -70,6 +70,9 @@ typedef struct
   ControlItem battery_percentage = {46, RAM, 4, READ};
 
   ControlItem sound = {50, RAM, 1, READ_WRITE};
+  
+  ControlItem dht_temp = {51, RAM, 4, READ};       // 온도 (51)
+  ControlItem dht_humi = {55, RAM, 4, READ};       // 습도 (55)
 
   ControlItem imu_re_calibration = {59, RAM, 1, READ_WRITE};
 
@@ -86,6 +89,9 @@ typedef struct
   ControlItem imu_orientation_x = {100, RAM, 4, READ};
   ControlItem imu_orientation_y = {104, RAM, 4, READ};
   ControlItem imu_orientation_z = {108, RAM, 4, READ};
+
+  ControlItem flame_digital = {112, RAM, 1, READ};  // 불꽃 (112)
+  ControlItem gas_digital = {113, RAM, 1, READ};    // 가스 (113)
 
   ControlItem present_current_left = {120, RAM, 4, READ};
   ControlItem present_current_right = {124, RAM, 4, READ};
@@ -105,11 +111,6 @@ typedef struct
 
   ControlItem profile_acceleration_left = {174, RAM, 4, READ_WRITE};
   ControlItem profile_acceleration_right = {178, RAM, 4, READ_WRITE};
-
-  ControlItem dht_temp = {51, RAM, 4, READ};       // 온도 (51)
-  ControlItem dht_humi = {55, RAM, 4, READ};       // 습도 (55)
-  ControlItem flame_digital = {112, RAM, 1, READ};  // 불꽃 (112)
-  ControlItem gas_digital = {113, RAM, 1, READ};    // 가스 (113)
 } ControlTable;
 
 const ControlTable extern_control_table;
